@@ -141,6 +141,8 @@ public class ClassifyCamera extends AppCompatActivity {
         textureView.setSurfaceTextureListener(textureListener);
         tv = (TextView) findViewById(R.id.sample_text);
 
+
+
     }
 
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
@@ -228,8 +230,12 @@ public class ClassifyCamera extends AppCompatActivity {
                         Ubuffer.get(U);
                         Vbuffer.get(V);
 
+                        long time1 = System.currentTimeMillis();
+
                         predictedClass = classificationFromCaffe2(h, w, Y, U, V,
                                 rowStride, pixelStride, run_HWC);
+                        long time2 = System.currentTimeMillis();
+                        predictedClass += Long.toString(time2 - time1) + "ms";
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {

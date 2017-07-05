@@ -7,6 +7,7 @@
 #include <caffe2/core/timer.h>
 
 #include "caffe2/core/init.h"
+#include <android/log.h>
 
 //#include <caffe2/utils/proto_utils.h>
 #include <android/asset_manager.h>
@@ -55,6 +56,7 @@ Java_facebook_f8demo_ClassifyCamera_initCaffe2(
     alog("done.")
 }
 
+
 float avg_fps = 0.0;
 float total_fps = 0.0;
 int iters_fps = 10;
@@ -67,6 +69,7 @@ Java_facebook_f8demo_ClassifyCamera_classificationFromCaffe2(
         jint h, jint w, jbyteArray Y, jbyteArray U, jbyteArray V,
         jint rowStride, jint pixelStride,
         jboolean infer_HWC) {
+    __android_log_print(ANDROID_LOG_INFO, "vyzhang", "123");
     if (!_predictor) {
         return env->NewStringUTF("Loading...");
     }
